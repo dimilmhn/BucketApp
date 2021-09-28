@@ -1,15 +1,15 @@
 //
-//  ProductTableViewCell.swift
+//  WishListTableViewCell.swift
 //  Bucket
 //
-//  Created by Dimil T Mohan on 2021/09/27.
+//  Created by Dimil T Mohan on 2021/09/28.
 //
 
 import UIKit
 
-class ProductTableViewCell: UITableViewCell {
-    
-    static let cellIdentifier = "ProductTableViewCellIdentifier"
+class WishListTableViewCell: UITableViewCell {
+
+    static let cellIdentifier = "WishListTableViewCellIdentifier"
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pictureImageView: UIImageView!
@@ -17,8 +17,8 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var wishListButton: UIButton!
     
-    var onWishListClicked: ((Product) -> Void)?
-    var productItem: Product!
+    var onWishListClicked: ((WishListItem) -> Void)?
+    var item: WishListItem!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,19 +30,19 @@ class ProductTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populate(_ item: Product, _ hasAddedToWishList: Bool) {
-        productItem = item
-        titleLabel.text = item.name
-        detailsLabel.text = item.details
-        priceLabel.text = item.price
+    func populate(_ item: WishListItem) {
+        self.item = item
+        self.titleLabel.text = item.name
+        self.detailsLabel.text = item.details
+        self.priceLabel.text = item.price
         self.pictureImageView.setImage(uri: item.url, placeholder: UIImage(named: Constants.Placeholder.product)) { (image, error) in
             self.pictureImageView?.image = image ?? UIImage(named: Constants.Placeholder.product)
         }
-        setWishList(status: hasAddedToWishList)
+        setWishListTitle()
     }
     
-    private func setWishList(status: Bool) {
-        status ? wishListButton.setTitle(Constants.WishList.remove, for: .normal) : wishListButton.setTitle(Constants.WishList.add, for: .normal)
+    private func setWishListTitle() {
+        wishListButton.setTitle(Constants.WishList.remove, for: .normal)
     }
     
     func setCornerRadious() {
@@ -51,6 +51,6 @@ class ProductTableViewCell: UITableViewCell {
     }
     
     @IBAction func wishListButtonClicked(_ sender: Any) {
-        onWishListClicked?(productItem)
+        onWishListClicked?(item)
     }
 }
