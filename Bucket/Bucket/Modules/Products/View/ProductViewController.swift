@@ -10,7 +10,7 @@ import UIKit
 class ProductViewController: UIViewController {
     @IBOutlet weak var productTableView: UITableView!
     var presenter: ProductPresenter = ProductPresenter()
-    var productList = [ProductItem]()
+    var productList = [Product]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +23,34 @@ class ProductViewController: UIViewController {
         productTableView.rowHeight = UITableView.automaticDimension
         productTableView.estimatedRowHeight = 266
     }
+    
+    fileprivate func updateWishList(_ product: Product) {
+        presenter.updateWishList(item: product)
+    }
 }
 
+//extension ProductViewController: UIScrollViewDelegate {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//
+//        if (offsetY > contentHeight - scrollView.frame.height * 4) {
+//            print("---------scrollViewDidScroll")
+//        }
+//    }
+//}
+
 extension ProductViewController: ProductPresenterProtocol {
-    func updateProductList(items: [ProductItem]?, error: Error?) {
+    func updateProductList(items: [Product]?, error: Error?) {
         guard let list = items else { return }
         DispatchQueue.main.async {
             self.productList = list
+            self.productTableView.reloadData()
+        }
+    }
+    
+    func didUpdateWishList() {
+        DispatchQueue.main.async {
             self.productTableView.reloadData()
         }
     }
@@ -44,7 +65,11 @@ extension ProductViewController: UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = productTableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.cellIdentifier, for: indexPath) as? ProductTableViewCell else {  fatalError("Cell not available") }
-        cell.populate(item: productList[indexPath.row])
+        let product = productList[indexPath.row]
+        cell.populate(product, presenter.hasAddedToWishList(item: product))
+        cell.onWishListClicked = { [weak self] product in
+            self?.updateWishList(product)
+        }
         return cell
     }
 }
@@ -54,4 +79,11 @@ extension ProductViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
   }
+}
+
+
+extension UIScrollView {
+    var maxVerticalContentOffset: CGFloat {
+        return contentSize.height - bounds.height + contentInset.bottom
+    }
 }

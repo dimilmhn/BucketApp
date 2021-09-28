@@ -16,13 +16,20 @@ struct Constants {
             static let product = "Placeholder"
     }
     
+    struct WishList {
+        static let add = "Add To WishList"
+        static let remove = "Clear From WishList"
+    }
+    
     struct Entity {
-        static let carItem = "CarItem"
+        static let productItem = "Product"
+        static let wishListItem = "WishListItem"
+
         struct Keypath {
             static let id = "id"
-            static let title = "title"
+            static let title = "name"
             static let details = "details"
-            static let dateTime = "dateTime"
+            static let price = "price"
             static let url = "url"
         }
     }

@@ -60,15 +60,32 @@
                                                     <color key="textColor" red="0.11372549019607843" green="0.3529411764705882" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rre-nK-PJZ">
+                                                    <rect key="frame" x="20" y="118" width="197" height="31"/>
+                                                    <color key="backgroundColor" red="0.1137254902" green="0.35294117650000001" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="197" id="9R6-bz-xoi"/>
+                                                        <constraint firstAttribute="height" constant="31" id="MLb-g4-NWg"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                    <connections>
+                                                        <action selector="wishListButtonClicked:" destination="z1p-jx-6eO" eventType="touchUpInside" id="agB-Zl-5fh"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="rre-nK-PJZ" firstAttribute="leading" secondItem="a5p-IU-gLF" secondAttribute="leading" constant="20" symbolic="YES" id="18o-Uy-641"/>
                                                 <constraint firstItem="lOZ-I7-BsV" firstAttribute="leading" secondItem="ljy-mR-T3H" secondAttribute="trailing" constant="8" symbolic="YES" id="2U5-ad-ccM"/>
                                                 <constraint firstItem="rDS-5u-3CZ" firstAttribute="leading" secondItem="a5p-IU-gLF" secondAttribute="leading" constant="20" symbolic="YES" id="3Db-02-W5p"/>
                                                 <constraint firstItem="ljy-mR-T3H" firstAttribute="leading" secondItem="rDS-5u-3CZ" secondAttribute="leading" id="63s-jn-yoc"/>
                                                 <constraint firstItem="ljy-mR-T3H" firstAttribute="top" secondItem="rDS-5u-3CZ" secondAttribute="bottom" constant="8" symbolic="YES" id="7Tt-Ol-CmY"/>
                                                 <constraint firstItem="lOZ-I7-BsV" firstAttribute="top" secondItem="a5p-IU-gLF" secondAttribute="topMargin" id="KtX-rZ-uEz"/>
+                                                <constraint firstItem="ERb-on-YCs" firstAttribute="top" secondItem="rre-nK-PJZ" secondAttribute="bottom" constant="8" symbolic="YES" id="PmH-FB-Lu2"/>
                                                 <constraint firstItem="ERb-on-YCs" firstAttribute="top" secondItem="a5p-IU-gLF" secondAttribute="top" constant="157" id="TWt-r7-i3k"/>
+                                                <constraint firstItem="rre-nK-PJZ" firstAttribute="top" secondItem="ljy-mR-T3H" secondAttribute="bottom" constant="13" id="VqQ-Ue-1cb"/>
                                                 <constraint firstItem="lOZ-I7-BsV" firstAttribute="leading" secondItem="rDS-5u-3CZ" secondAttribute="trailing" constant="8" symbolic="YES" id="Xr6-MO-CFE"/>
                                                 <constraint firstItem="rDS-5u-3CZ" firstAttribute="top" secondItem="lOZ-I7-BsV" secondAttribute="top" id="ZmQ-Tj-BvR"/>
                                                 <constraint firstAttribute="bottom" secondItem="ERb-on-YCs" secondAttribute="bottom" constant="11" id="a1P-1o-JPH"/>
@@ -83,6 +100,7 @@
                                             <outlet property="pictureImageView" destination="lOZ-I7-BsV" id="ju1-Lr-PE1"/>
                                             <outlet property="priceLabel" destination="ljy-mR-T3H" id="Rls-xn-wb4"/>
                                             <outlet property="titleLabel" destination="rDS-5u-3CZ" id="Wpv-Io-RIR"/>
+                                            <outlet property="wishListButton" destination="rre-nK-PJZ" id="sex-UL-Kdy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

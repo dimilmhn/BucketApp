@@ -33,7 +33,9 @@ final class NetworkServiceProvider {
         
         switch response.statusCode {
         case 200...299:
-            guard let data = data, let model = try? JSONDecoder().decode(type, from: data) else { return completion(.failure(.unknown)) }
+            let decoder = JSONDecoder()
+            decoder.userInfo[CodingUserInfoKey.context!] = CoreDataStack.shared.persistentContainer.viewContext
+            guard let data = data, let model = try? decoder.decode(type, from: data) else { return completion(.failure(.unknown)) }
             completion(.success(model))
         default:
             completion(.failure(.unknown))
