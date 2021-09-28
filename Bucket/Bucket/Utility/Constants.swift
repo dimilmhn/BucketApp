@@ -1,0 +1,29 @@
+//
+//  Constants.swift
+//  Bucket
+//
+//  Created by Dimil T Mohan on 2021/09/27.
+//
+
+import Foundation
+
+struct Constants {
+    struct API {
+        static let baseURL = "https://60d2fa72858b410017b2ea05.mockapi.io/api/v1/menu"
+    }
+    
+    struct Placeholder {
+            static let product = "Placeholder"
+    }
+    
+    struct Entity {
+        static let carItem = "CarItem"
+        struct Keypath {
+            static let id = "id"
+            static let title = "title"
+            static let details = "details"
+            static let dateTime = "dateTime"
+            static let url = "url"
+        }
+    }
+}
