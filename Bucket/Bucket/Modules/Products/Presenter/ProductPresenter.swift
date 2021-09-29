@@ -1,9 +1,8 @@
 //
-//  SearchRoutePresenter.swift
-//  TravelTracker
+//  SceneDelegate.swift
+//  Bucket
 //
-//  Created by Abhisek on 08/01/18.
-//  Copyright © 2018 Abhisek. All rights reserved.
+//  Created by Dimil T Mohan on 2021/09/26.
 //
 
 import UIKit
@@ -16,6 +15,10 @@ class ProductPresenter: ProductViewProtocol {
     func viewDidLoad() {
         ProductRouteWireframe.loadProductComponents(withPresenter: self)
         interactor?.fetachStoredProducts()
+        interactor?.getProducts()
+    }
+    
+    func refresh() {
         interactor?.getProducts()
     }
     

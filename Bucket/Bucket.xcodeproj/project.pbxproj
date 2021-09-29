@@ -47,6 +47,7 @@
 		10C9351B270396DE00B2EA91 /* WishListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9351A270396DE00B2EA91 /* WishListInteractor.swift */; };
 		10C9351D2703977D00B2EA91 /* WishListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9351C2703977D00B2EA91 /* WishListPresenter.swift */; };
 		10C9351F270397E800B2EA91 /* WishListRouteWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9351E270397E800B2EA91 /* WishListRouteWireframe.swift */; };
+		10C93521270435EC00B2EA91 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C93520270435EC00B2EA91 /* UIViewController+Extension.swift */; };
 		251F77C048A7B67361B5D477 /* Pods_Bucket_BucketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A611051C5A88E38B49ABEFBF /* Pods_Bucket_BucketUITests.framework */; };
 		43D3223B1C8A9870A1906DBB /* Pods_Bucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620464D8EB8720F5422CB935 /* Pods_Bucket.framework */; };
 		4EFED3F3773C098D5D712C8B /* Pods_BucketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB08CD732A430B895F803F32 /* Pods_BucketTests.framework */; };
@@ -111,6 +112,7 @@
 		10C9351A270396DE00B2EA91 /* WishListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListInteractor.swift; sourceTree = "<group>"; };
 		10C9351C2703977D00B2EA91 /* WishListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListPresenter.swift; sourceTree = "<group>"; };
 		10C9351E270397E800B2EA91 /* WishListRouteWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListRouteWireframe.swift; sourceTree = "<group>"; };
+		10C93520270435EC00B2EA91 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2B99C30A4248192B391A8975 /* Pods-Bucket-BucketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bucket-BucketUITests.debug.xcconfig"; path = "Target Support Files/Pods-Bucket-BucketUITests/Pods-Bucket-BucketUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		322AB8A81991F240329CF1F4 /* Pods-BucketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketTests.debug.xcconfig"; path = "Target Support Files/Pods-BucketTests/Pods-BucketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B67DCE7FF70C60337BF8EDA /* Pods-BucketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BucketTests.release.xcconfig"; path = "Target Support Files/Pods-BucketTests/Pods-BucketTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			children = (
 				10C934EF270208EF00B2EA91 /* Decode+Extension.swift */,
 				10C934F8270310AC00B2EA91 /* ImageView+Extension.swift */,
+				10C93520270435EC00B2EA91 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10C93521270435EC00B2EA91 /* UIViewController+Extension.swift in Sources */,
 				10C9350C2703789500B2EA91 /* Product+CoreDataProperties.swift in Sources */,
 				10C934DD2701D64C00B2EA91 /* ProductRouteWireframe.swift in Sources */,
 				10C9351F270397E800B2EA91 /* WishListRouteWireframe.swift in Sources */,

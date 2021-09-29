@@ -32,23 +32,25 @@ class WishListViewController: UIViewController {
     fileprivate func removeWishList(_ item: WishListItem) {
         presenter.removeWishList(item: item)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
 extension WishListViewController: WishListPresenterProtocol {
     func updateWishList(items: [WishListItem]?, error: Error?) {
-        guard let list = items else { return }
+        guard error == nil else {
+            DispatchQueue.main.async {
+                self.showAlert(Constants.Error.Message.generic)
+            }
+            return
+        }
+        
+        guard let list = items, list.count > 0 else {
+            DispatchQueue.main.async {
+                self.showAlert(Constants.Error.Message.wishListNoData)
+            }
+            return
+        }
+        
         DispatchQueue.main.async {
             self.wishList = list
             self.wishListTableView.reloadData()

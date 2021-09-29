@@ -9,14 +9,30 @@ import UIKit
 
 class ProductViewController: UIViewController {
     @IBOutlet weak var productTableView: UITableView!
-    var presenter: ProductPresenter = ProductPresenter()
-    var productList = [Product]()
+    
+    private let presenter: ProductPresenter = ProductPresenter()
+    private let refreshControl = UIRefreshControl()
+
+    private var productList = [Product]()
+    private var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = UIColor.blue
+        return activityIndicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewComponents()
         presenter.viewRef = self
-        configureTableView()
         presenter.viewDidLoad()
+    }
+    
+    // MARK: - View Configurations
+
+    private func configureViewComponents() {
+        configureTableView()
+        configureActivityIndicator()
+        configurePullToRefresh()
     }
     
     private func configureTableView() {
@@ -24,28 +40,60 @@ class ProductViewController: UIViewController {
         productTableView.estimatedRowHeight = 266
     }
     
+    private func configureActivityIndicator() {
+        self.activityIndicator.center = self.productTableView.center
+        self.view.addSubview(activityIndicator)
+        self.activityIndicator.startAnimating()
+    }
+    
+    private func configurePullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+           refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+           productTableView.addSubview(refreshControl)
+    }
+    
+    // MARK: - Functionalities
+    
     fileprivate func updateWishList(_ product: Product) {
         presenter.updateWishList(item: product)
     }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        DispatchQueue.global().async {
+            self.presenter.refresh()
+        }
+    }
+    
+    fileprivate func updateView() {
+        self.productTableView.reloadData()
+        self.activityIndicator.stopAnimating()
+        self.refreshControl.endRefreshing()
+    }
 }
-
-//extension ProductViewController: UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//
-//        if (offsetY > contentHeight - scrollView.frame.height * 4) {
-//            print("---------scrollViewDidScroll")
-//        }
-//    }
-//}
 
 extension ProductViewController: ProductPresenterProtocol {
     func updateProductList(items: [Product]?, error: Error?) {
-        guard let list = items else { return }
+        var message = Constants.Error.Message.generic
+        guard error == nil else {
+            DispatchQueue.main.async {
+                if let networkError = error as? NetworkError {
+                    message = networkError.rawValue
+                }
+                self.showAlert(message)
+            }
+            return
+        }
+        
+        guard let list = items else {
+            DispatchQueue.main.async {
+                self.showAlert(Constants.Error.Message.noData)
+            }
+            return
+        }
+        
         DispatchQueue.main.async {
             self.productList = list
-            self.productTableView.reloadData()
+            self.updateView()
         }
     }
     
@@ -79,11 +127,4 @@ extension ProductViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
   }
-}
-
-
-extension UIScrollView {
-    var maxVerticalContentOffset: CGFloat {
-        return contentSize.height - bounds.height + contentInset.bottom
-    }
 }

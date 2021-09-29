@@ -1,9 +1,8 @@
 //
-//  HomeScreenProtocols.swift
-//  TravelTracker
+//  SceneDelegate.swift
+//  Bucket
 //
-//  Created by Abhisek on 08/01/18.
-//  Copyright © 2018 Abhisek. All rights reserved.
+//  Created by Dimil T Mohan on 2021/09/26.
 //
 
 import Foundation
@@ -16,6 +15,7 @@ protocol ProductViewProtocol {
     var interactor: ProductInteractor? {get set}
     //View -> Presenter
     func viewDidLoad()
+    func refresh()
     func hasAddedToWishList(item: Product) -> Bool
     func updateWishList(item: Product)
 }
